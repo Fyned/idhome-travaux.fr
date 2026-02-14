@@ -155,11 +155,11 @@ export default function MaintenancePage() {
           {/* Contact info */}
           <div className="mt-6 flex flex-col sm:flex-row items-center justify-center gap-4 text-gray-400">
             <a
-              href="mailto:75idhome@gmail.com"
+              href="mailto:contact@idhome-travaux.fr"
               className="inline-flex items-center gap-2 hover:text-id-orange transition-colors"
             >
               <Mail className="w-4 h-4" />
-              75idhome@gmail.com
+              contact@idhome-travaux.fr
             </a>
             <span className="hidden sm:inline text-gray-600">|</span>
             <span className="inline-flex items-center gap-2">
