@@ -204,6 +204,14 @@ export default function MaintenancePage() {
           <p className="font-body text-xs text-gray-500">
             &copy; {new Date().getFullYear()} ID Home — Tous droits réservés
           </p>
+          <a
+            href="https://dmckreatif.com"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="font-body text-[10px] text-gray-600 hover:text-gray-400 transition-colors"
+          >
+            Créé par DMC Kreatif
+          </a>
         </div>
       </footer>
     </div>

@@ -58,7 +58,25 @@ export default function RootLayout({
 }) {
   return (
     <html lang="fr" className={`${montserrat.variable} ${dmSans.variable}`}>
-      <body>{children}</body>
+      <body>
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify({
+              "@context": "https://schema.org",
+              "@type": "WebPage",
+              "name": "ID Home — Rénovation & Dépannage",
+              "url": "https://idhome-travaux.fr",
+              "creator": {
+                "@type": "Organization",
+                "name": "DMC Kreatif",
+                "url": "https://dmckreatif.com",
+              },
+            }),
+          }}
+        />
+        {children}
+      </body>
     </html>
   );
 }
