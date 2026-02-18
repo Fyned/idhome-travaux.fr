@@ -21,7 +21,7 @@ export const metadata: Metadata = {
   description:
     "ID Home, votre expert en rénovation et dépannage d'urgence. " +
     "Plomberie, électricité, serrurerie — intervention rapide 7J/7. " +
-    "Devis gratuit, prix transparents. Appelez le 09 87 52 91 81.",
+    "Devis gratuit, prix transparents. Appelez le 06 58 97 14 39.",
   keywords: [
     "rénovation",
     "dépannage",

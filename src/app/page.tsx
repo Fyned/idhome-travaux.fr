@@ -144,12 +144,12 @@ export default function MaintenancePage() {
         >
           {/* Phone CTA */}
           <a
-            href="tel:+33987529181"
+            href="tel:+33658971439"
             className="inline-flex items-center gap-3 px-8 py-4 bg-id-orange hover:bg-id-orange-dark text-white font-heading font-bold text-xl md:text-2xl rounded-full transition-colors duration-300 animate-pulse-glow"
             style={{ animationDelay: "1000ms" }}
           >
             <Phone className="w-6 h-6" />
-            09 87 52 91 81
+            06 58 97 14 39
           </a>
 
           {/* Contact info */}
