@@ -2,9 +2,16 @@
 @tailwind components;
 @tailwind utilities;
 
+/* ─────────────────────────────────────────────
+   ID Home — Styles globaux (thème clair)
+   ───────────────────────────────────────────── */
+
 @layer base {
+  /* États initiaux des animations */
   .animate-fade-in-up,
-  .animate-fade-in {
+  .animate-fade-in,
+  .animate-slide-in-left,
+  .animate-slide-in-right {
     opacity: 0;
   }
 
@@ -13,29 +20,324 @@
   }
 
   body {
-    @apply bg-id-dark text-white font-body antialiased;
+    @apply bg-white text-id-charcoal font-body antialiased;
+  }
+
+  /* Titres typographiques */
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-heading;
+  }
+
+  /* Liens de focus */
+  :focus-visible {
+    @apply outline-2 outline-offset-2 outline-id-orange rounded-sm;
+  }
+
+  /* Selection */
+  ::selection {
+    @apply bg-id-orange/20 text-id-charcoal;
   }
 }
 
-/* Gradient mesh background */
+@layer components {
+  /* ── Carte glassmorphisme (fond clair) ─── */
+  .glass-card {
+    @apply bg-white rounded-2xl border border-gray-100;
+    box-shadow:
+      0 1px 3px rgba(0, 0, 0, 0.04),
+      0 4px 12px rgba(0, 0, 0, 0.03);
+    transition: box-shadow 0.3s, border-color 0.3s, transform 0.3s;
+    contain: layout style;
+  }
+
+  @media (hover: hover) {
+    .glass-card:hover {
+      @apply border-id-orange/20;
+      box-shadow:
+        0 4px 12px rgba(0, 0, 0, 0.06),
+        0 12px 32px rgba(0, 0, 0, 0.04);
+      transform: translateY(-2px);
+    }
+  }
+
+  /* ── Section padding cohérent ─── */
+  .section-padding {
+    @apply py-16 md:py-24 lg:py-32;
+  }
+
+  .section-padding-sm {
+    @apply py-12 md:py-16 lg:py-20;
+  }
+
+  /* ── Container centré ─── */
+  .container-tight {
+    @apply max-w-5xl mx-auto px-4 sm:px-6 lg:px-8;
+  }
+
+  .container-wide {
+    @apply max-w-7xl mx-auto px-4 sm:px-6 lg:px-8;
+  }
+
+  /* ── Titres de section ─── */
+  .section-title {
+    @apply text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-heading font-bold text-id-charcoal leading-tight;
+  }
+
+  .section-subtitle {
+    @apply text-lg md:text-xl font-body text-gray-500 max-w-2xl;
+  }
+}
+
+/* ── Gradient chaud subtil (hero) ─── */
+.gradient-warm {
+  background:
+    radial-gradient(ellipse at 20% 50%, rgba(232, 136, 45, 0.04) 0%, transparent 50%),
+    radial-gradient(ellipse at 80% 20%, rgba(232, 136, 45, 0.03) 0%, transparent 50%),
+    radial-gradient(ellipse at 50% 100%, rgba(232, 136, 45, 0.02) 0%, transparent 50%),
+    #ffffff;
+}
+
+/* ── Divider subtil ─── */
+.divider-subtle {
+  @apply border-t border-gray-100;
+}
+
+/* ── Glow CTA ─── */
+.cta-glow {
+  box-shadow: 0 0 15px rgba(232, 136, 45, 0.2);
+  transition: box-shadow 0.3s;
+}
+
+@media (hover: hover) {
+  .cta-glow:hover {
+    box-shadow:
+      0 0 25px rgba(232, 136, 45, 0.35),
+      0 0 50px rgba(232, 136, 45, 0.12);
+  }
+}
+
+/* Désactiver l'animation pulse-glow sur mobile (économie de batterie) */
+@media (max-width: 767px) {
+  .animate-pulse-glow {
+    animation: none !important;
+  }
+}
+
+/* ── Bande CTA turuncu ─── */
+.cta-band {
+  background:
+    linear-gradient(135deg, #E8882D 0%, #D47520 50%, #E8882D 100%);
+}
+
+/* ── Footer sombre ─── */
+.footer-dark {
+  @apply bg-id-charcoal text-white;
+}
+
+/* ── Scroll-down indicator ─── */
+@keyframes scrollBounce {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(8px); }
+}
+
+.animate-scroll-bounce {
+  animation: scrollBounce 2s ease-in-out infinite;
+}
+
+/* ── Header transparent — top bar ─── */
+.header-top-bar {
+  @apply bg-black/30 backdrop-blur-sm;
+}
+
+/* ── Header nav states ─── */
+.header-nav-transparent {
+  @apply bg-white/10 border-b border-white/15;
+  will-change: background-color, box-shadow;
+}
+
+.header-nav-scrolled {
+  @apply bg-id-orange/90 shadow-lg;
+  box-shadow:
+    0 4px 20px rgba(232, 136, 45, 0.3),
+    0 8px 32px rgba(0, 0, 0, 0.15);
+  will-change: background-color, box-shadow;
+}
+
+.header-nav-inner {
+  @apply bg-white border-b border-gray-100 shadow-sm;
+  will-change: background-color, box-shadow;
+}
+
+/* Backdrop-blur uniquement sur les écrans larges (évite le jank mobile) */
+@media (min-width: 1024px) {
+  .header-nav-transparent { @apply backdrop-blur-md; }
+  .header-nav-scrolled { @apply backdrop-blur-md; }
+  .header-nav-inner { @apply backdrop-blur-md; }
+}
+
+/* ── Hero overlay gradient ─── */
+.hero-overlay {
+  background: linear-gradient(
+    to bottom,
+    rgba(0, 0, 0, 0.60) 0%,
+    rgba(0, 0, 0, 0.20) 40%,
+    rgba(0, 0, 0, 0.50) 100%
+  );
+}
+
+/* ── Hero slide transitions ─── */
+.hero-slide {
+  @apply absolute inset-0 transition-opacity duration-1000 ease-in-out;
+}
+
+.hero-slide-active {
+  opacity: 1;
+}
+
+.hero-slide-inactive {
+  opacity: 0;
+}
+
+/* ── Services dropdown dark variant ─── */
+.dropdown-dark {
+  @apply bg-id-charcoal/95 backdrop-blur-md rounded-xl border border-white/10;
+}
+
+/* ── Mega-menu services ─── */
+.mega-menu-wrapper {
+  @apply fixed left-0 right-0 pointer-events-none;
+  top: 80px;
+  opacity: 0;
+  transform: translateY(-8px);
+  transition: opacity 0.2s ease, transform 0.2s ease;
+  will-change: opacity, transform;
+}
+
+@media (min-width: 1024px) {
+  .mega-menu-wrapper { top: 104px; }
+}
+
+/* group-hover applied via parent .group */
+.group:hover > .mega-menu-wrapper {
+  opacity: 1;
+  transform: translateY(0);
+  pointer-events: auto;
+}
+
+.mega-menu-panel {
+  @apply bg-white border-t border-gray-100;
+  box-shadow:
+    0 12px 40px rgba(0, 0, 0, 0.06),
+    0 4px 16px rgba(0, 0, 0, 0.03);
+}
+
+/* ── Performance mobile ─── */
+
+/* Sections hors du viewport : rendu différé (content-visibility) */
+.section-padding,
+.section-padding-sm {
+  content-visibility: auto;
+  contain-intrinsic-size: auto 600px;
+}
+
+/* iOS momentum scrolling */
+@supports (-webkit-overflow-scrolling: touch) {
+  body { -webkit-overflow-scrolling: touch; }
+}
+
+/* Désactiver les animations pour les utilisateurs sensibles */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* Touch-action pour éviter le delay de 300ms */
+a, button, [role="button"] {
+  touch-action: manipulation;
+}
+
+/* ── Shine sweep effect on cards ─── */
+.shine-sweep {
+  position: relative;
+  overflow: hidden;
+}
+
+@media (hover: hover) {
+  .shine-sweep::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+      105deg,
+      transparent 40%,
+      rgba(255, 255, 255, 0.15) 45%,
+      rgba(255, 255, 255, 0.05) 50%,
+      transparent 55%
+    );
+    background-size: 200% 100%;
+    background-position: -200% 0;
+    transition: none;
+    pointer-events: none;
+    z-index: 1;
+    border-radius: inherit;
+  }
+
+  .shine-sweep:hover::after {
+    animation: shineSweep 0.8s ease-in-out;
+  }
+}
+
+@keyframes shineSweep {
+  0% { background-position: -200% 0; }
+  100% { background-position: 200% 0; }
+}
+
+/* ── Animated gradient mesh background ─── */
 .gradient-mesh {
   background:
-    radial-gradient(ellipse at 20% 50%, rgba(232, 136, 45, 0.08) 0%, transparent 50%),
-    radial-gradient(ellipse at 80% 20%, rgba(232, 136, 45, 0.05) 0%, transparent 50%),
-    radial-gradient(ellipse at 50% 80%, rgba(232, 136, 45, 0.04) 0%, transparent 50%),
-    #1a1a1a;
+    radial-gradient(ellipse at 20% 30%, rgba(232, 136, 45, 0.05) 0%, transparent 50%),
+    radial-gradient(ellipse at 80% 70%, rgba(232, 136, 45, 0.04) 0%, transparent 50%),
+    radial-gradient(ellipse at 50% 50%, rgba(232, 136, 45, 0.02) 0%, transparent 70%);
 }
 
-/* Glassmorphism card */
-.glass-card {
-  background: rgba(255, 255, 255, 0.03);
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
-  border: 1px solid rgba(255, 255, 255, 0.06);
-  transition: background 0.3s, border-color 0.3s;
+/* ── Animated dot grid pattern ─── */
+.dot-grid-animated {
+  background-image:
+    radial-gradient(circle at 1px 1px, currentColor 1px, transparent 0);
+  background-size: 40px 40px;
+  animation: dotPulse 3s ease-in-out infinite;
 }
 
-.glass-card:hover {
-  background: rgba(255, 255, 255, 0.06);
-  border-color: rgba(232, 136, 45, 0.2);
+@keyframes dotPulse {
+  0%, 100% { opacity: 0.04; }
+  50% { opacity: 0.08; }
+}
+
+/* ── Link animated underline ─── */
+.link-underline {
+  position: relative;
+}
+
+.link-underline::after {
+  content: "";
+  position: absolute;
+  left: 50%;
+  bottom: -2px;
+  width: 0;
+  height: 2px;
+  background: currentColor;
+  transition: width 0.3s, left 0.3s;
+}
+
+@media (hover: hover) {
+  .link-underline:hover::after {
+    width: 100%;
+    left: 0;
+  }
 }

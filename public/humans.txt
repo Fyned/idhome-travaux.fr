@@ -1,0 +1,12 @@
+/* TEAM */
+Site conçu et développé par DMC Kreatif
+URL: https://dmckreatif.com
+
+/* CLIENT */
+ID Home — Rénovation & Dépannage
+URL: https://idhome-travaux.fr
+
+/* TECHNOLOGIE */
+Framework: Next.js
+Styles: Tailwind CSS
+Hébergement: Hostinger
